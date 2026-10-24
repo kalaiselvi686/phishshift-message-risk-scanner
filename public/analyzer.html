@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <meta name="description" content="Analyze suspicious messages with PhishShift.">
+    <title>Message Analyzer | PhishShift</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="PhishShift home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 3.5 27 8v7.2c0 7.1-4.8 11.5-11 14.3C9.8 26.7 5 22.3 5 15.2V8l11-4.5Z"/><path d="m11.5 16 3 3 6-6.5"/></svg></span><span class="brand-name">Phish<span>Shift</span><small>MESSAGE SECURITY</small></span></a>
+        <div class="nav-label">WORKSPACE</div>
+        <nav class="side-nav">
+          <a class="nav-link" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg>Overview</a>
+          <a class="nav-link active" href="/analyzer" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m15.4-6.4-2.1 2.1M7.7 16.3l-2.1 2.1m12.8 0-2.1-2.1M7.7 7.7 5.6 5.6"/><circle cx="12" cy="12" r="5"/></svg>Message analyzer</a>
+          <a class="nav-link" href="/history"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/><circle cx="18" cy="18" r="3"/></svg>Scan history</a>
+        </nav>
+        <div class="sidebar-bottom"><div class="privacy-card"><span class="privacy-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg></span><div><strong>Private by design</strong><p>Messages are analyzed in memory and are not saved.</p></div></div><div class="sidebar-meta">PHISHSHIFT <span>•</span> RULES-BASED SCANNER</div></div>
+      </aside>
+      <main class="main-content">
+        <header class="topbar"><div class="breadcrumbs"><a href="/">Workspace</a><span class="crumb-divider">/</span><strong>Message analyzer</strong></div><div class="topbar-right"><span class="status-dot"></span><span class="system-status">All systems operational</span><span class="avatar" aria-label="Local workspace">PS</span></div></header>
+        <div class="page-content">
+          <section class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> MESSAGE THREAT INTELLIGENCE</div><h1>Message analyzer</h1><p class="welcome-copy">Check a message for common risk signals and review why it was flagged.</p></div></section>
+          <section class="workspace-grid analyzer-page-grid">
+            <article class="panel analyzer-panel" id="analyzer">
+              <div class="panel-heading"><div><div class="section-kicker">NEW ANALYSIS</div><h2>Analyze a message</h2><p>Paste the text of an email, SMS, or direct message below.</p></div><span class="panel-heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m15.4-6.4-2.1 2.1M7.7 16.3l-2.1 2.1m12.8 0-2.1-2.1M7.7 7.7 5.6 5.6"/><circle cx="12" cy="12" r="5"/></svg></span></div>
+              <label class="input-label" for="message-input">MESSAGE CONTENT</label>
+              <div class="textarea-wrap"><textarea id="message-input" maxlength="5000" placeholder="Paste a message here to check for suspicious links, urgent language, or requests for sensitive information..." spellcheck="false"></textarea><div class="textarea-footer"><span class="input-hint"><span class="mini-lock" aria-hidden="true">▣</span> Your message is not stored</span><span id="character-count">0 / 5,000</span></div></div>
+              <div class="form-actions"><span class="analysis-note"><span class="info-mark" aria-hidden="true">i</span> A scan is a helpful signal, not a guarantee.</span><button class="primary-button" id="analyze-button" type="button"><span class="button-spinner" aria-hidden="true"></span><svg class="button-spark" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.7 7.3L21 12l-7.3 1.7L12 21l-1.7-7.3L3 12l7.3-2.7L12 2Z"/></svg><span class="button-label">Analyze message</span><span aria-hidden="true">→</span></button></div>
+              <div class="form-error" id="form-error" role="alert" hidden></div>
+              <div class="result-card" id="result-card" aria-live="polite" hidden><div class="result-header"><div><div class="section-kicker">SCAN RESULT</div><h3 id="result-title">Message assessment</h3></div><span class="risk-badge" id="risk-badge"></span></div><div class="score-row"><div class="score-display"><strong id="result-score">0</strong><span>/ 100</span></div><div class="score-track"><span id="score-fill"></span></div><span class="score-caption">Risk score</span></div><p class="result-summary" id="result-summary"></p><div class="indicators-heading"><span>INDICATORS FOUND</span><span id="indicator-count">0</span></div><ul class="indicator-list" id="indicator-list"></ul><div class="result-disclaimer">Automated rule-based analysis can miss threats or flag safe messages. Verify important requests using a trusted contact method.</div></div>
+            </article>
+            <aside class="panel guidance-panel"><div class="guidance-title"><span class="guidance-icon" aria-hidden="true">✦</span><div><div class="section-kicker">QUICK GUIDE</div><h2>Think before you click</h2></div></div><p class="guidance-intro">A few seconds of verification can prevent a costly mistake.</p><ol class="guide-list"><li><span class="guide-number">01</span><span><strong>Check the sender</strong><small>Look for misspelled addresses or names that don’t match the real organization.</small></span></li><li><span class="guide-number">02</span><span><strong>Question the urgency</strong><small>Threats, pressure, and surprise rewards are common manipulation tactics.</small></span></li><li><span class="guide-number">03</span><span><strong>Verify links safely</strong><small>Don’t sign in from an unexpected link. Visit the official site yourself.</small></span></li></ol><div class="guidance-footer"><span aria-hidden="true">✓</span> When in doubt, verify through a trusted channel.</div></aside>
+          </section>
+          <footer class="page-footer"><span>© 2026 PhishShift Message Risk Scanner</span><span>Scores are indicators for review, not probabilities.</span></footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
